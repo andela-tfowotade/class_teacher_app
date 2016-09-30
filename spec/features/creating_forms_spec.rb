@@ -7,7 +7,7 @@ feature "Creating Form" do
  end
 
   scenario "user supplies valid data" do
-    fill_in("Name", with "My Form 1")
+    fill_in("Name", with: "My Form 1")
     click_on("Submit")
 
     expect(page).to have_content("My Form 1")
