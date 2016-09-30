@@ -11,7 +11,8 @@
 <div>
   <% if @forms.any? %>
     <% @forms.each do |form| %>
-      <%= form.name %></p>
+      <%= form.name %>
+      <%= link_to "view", form_students_path(form) %><br>
     <% end %>
   <% else %>
     <h3>No forms added yet!</h3>
