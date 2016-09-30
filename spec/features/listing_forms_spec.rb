@@ -1,8 +1,10 @@
 require "rails_helper"
 
 feature "Listing forms" do
-  before { visit root_path }
-  after(:all) { Form.destroy_all }
+  before do
+    create(:teacher) 
+    visit root_path
+  end
 
   context "when teacher has no form" do
     scenario "notifies teacher of no form" do

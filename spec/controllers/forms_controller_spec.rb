@@ -1,14 +1,12 @@
 require "rails_helper"
 
 RSpec.describe FormsController do
-  after(:all) { Form.destroy_all }
+  before do
+    teacher = create(:teacher)
+    create(:form, name: "Form1", teacher_id: teacher.id)
+  end
 
   describe "#index" do
-    before do
-      teacher = create(:teacher)
-      create(:form, name: "Form1", teacher_id: 1)
-    end
-
     it "renders the index page" do
       get :index
 

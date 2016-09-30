@@ -6,6 +6,6 @@ class ApplicationController < ActionController::Base
   private 
 
   def set_teacher
-    @teacher = Teacher.find(1)
+    @teacher = Teacher.last
   end
 end
