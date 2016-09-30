@@ -7,5 +7,12 @@ RSpec.describe TeachersController do
 
       expect(response).to render_template :index
     end
+
+    it "list all forms belonging to a teacher" do
+      form = create(:Form, name: Form1)
+      get :index
+
+      expect(assigns(:forms)).to have_content "Form1"
+    end
   end
 end
