@@ -1,0 +1,20 @@
+<h1>Your Students List</h1>
+
+<p><%= link_to "Add New Student", new_form_student_path %></p>
+
+<div>
+  <% if flash[:notice] %>
+    <%= flash[:notice] %>
+  <% end %>
+</div>
+
+<div>
+  <% if @students.any? %>
+    <% @students.each do |student| %>
+      <%= student.name %><br>
+    <% end %>
+  <% else %>
+    <h3>No Student added yet!</h3>
+  <% end %>
+</div>
+
