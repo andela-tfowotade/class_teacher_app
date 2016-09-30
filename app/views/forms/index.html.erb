@@ -1,0 +1,20 @@
+<h1>Class Teacher App</h1>
+
+<p><%= link_to "Create New Form", new_form_path %></p>
+
+<div>
+  <% if flash[:notice] %>
+    <%= flash[:notice] %>
+  <% end %>
+</div>
+
+<div>
+  <% if @forms.any? %>
+    <% @forms.each do |form| %>
+      <%= form.name %></p>
+    <% end %>
+  <% else %>
+    <h3>No forms added yet!</h3>
+  <% end %>
+</div>
+
