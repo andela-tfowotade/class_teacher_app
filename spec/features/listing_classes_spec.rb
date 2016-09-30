@@ -17,7 +17,7 @@ feature "Listing formes" do
     scenario "notifies teacher of no form" do
       visit root_path
 
-      expect(page).to have_content "No forms created yet!"
+      expect(page).to have_content "No forms added yet!"
     end
   end
 end

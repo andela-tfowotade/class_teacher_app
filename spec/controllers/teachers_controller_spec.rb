@@ -36,7 +36,7 @@ RSpec.describe TeachersController do
   describe "#create" do
     context "with valid data" do
       it "redirects to the root path" do
-        post: create, form: attributes_for(:form, name: "Form3")
+        post :create, form: attributes_for(:form, name: "Form3")
 
         expect(response).to redirect_to root_path
       end
@@ -50,7 +50,7 @@ RSpec.describe TeachersController do
 
     context "with invalid data" do
       it "renders the new template" do
-        post: create, form: attributes_for(:form, name: "")
+        post :create, form: attributes_for(:form, name: "")
 
         expect(response).to render_template :new
       end
