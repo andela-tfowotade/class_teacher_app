@@ -1,10 +1,14 @@
 require "rails_helper"
 
-RSpec.describe TeachersController do
-  let(:teacher) { create(:teacher, name: "Teacher1") }
-  let(:form) { create(:form, name: "Form1") }
+RSpec.describe FormsController do
+  after(:all) { Form.destroy_all }
 
   describe "#index" do
+    before do
+      teacher = create(:teacher)
+      create(:form, name: "Form1", teacher_id: 1)
+    end
+
     it "renders the index page" do
       get :index
 
@@ -12,10 +16,9 @@ RSpec.describe TeachersController do
     end
 
     it "list all forms belonging to a teacher" do
-      teacher.forms << form
       get :index
-
-      expect(assigns(:forms)).to have_content "Form1"
+      
+      expect((assigns(:forms)).first.name).to include "Form1"
     end
   end
 
@@ -35,29 +38,32 @@ RSpec.describe TeachersController do
 
   describe "#create" do
     context "with valid data" do
-      it "redirects to the root path" do
-        post :create, form: attributes_for(:form, name: "Form3")
+      let(:valid_data) { attributes_for(:form, name: "Form3") }
 
+      it "redirects to the root path" do
+        post :create, form: valid_data
         expect(response).to redirect_to root_path
       end
 
       it "creates a new form in the database" do
         expect{
-          post :create, form: attributes_for(:form, name: "Form3")
+          post :create, form: valid_data
         }.to change(Form, :count).by 1
       end
     end
 
     context "with invalid data" do
+      let(:invalid_data) { attributes_for(:form, name: "") }
+
       it "renders the new template" do
-        post :create, form: attributes_for(:form, name: "")
+        post :create, form: invalid_data
 
         expect(response).to render_template :new
       end
 
       it "does not create a new form in the database" do
         expect{
-          post :create, form: attributes_for(:form, name: "")
+          post :create, form: invalid_data
         }.not_to change(Form, :count)
       end
     end

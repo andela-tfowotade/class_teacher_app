@@ -16,6 +16,6 @@ feature "Creating Form" do
   scenario "user supplies invalid data" do
      click_on("Submit")
 
-     expect(page).to have_content("Can't be blank")
+     expect(page).to have_content("can't be blank")
   end
 end

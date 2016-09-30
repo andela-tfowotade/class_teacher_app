@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
-  resources :teachers
-  root "teachers#index"
+  resources :forms, only: [:index, :new, :create]
+
+  root "forms#index"
 end
